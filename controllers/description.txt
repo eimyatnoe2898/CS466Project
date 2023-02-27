@@ -1,0 +1,4 @@
+This folder is for controllers where user input is handled/rendered
+The controllers will never talk directly with database directly
+If we need to perform queries on the user input/ or make some changes,
+we need to call the model classes
