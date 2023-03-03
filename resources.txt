@@ -1,0 +1,8 @@
+Resources
+1. Express Handbook
+https://www.freecodecamp.org/news/the-express-handbook/I
+https://www.maketecheasier.com/what-is-the-windows-path/
+
+2. How to use EJS view engine - for Frontend
+https://levelup.gitconnected.com/render-dynamic-content-in-nodejs-using-templates-a58cae681148
+https://www.section.io/engineering-education/static-site-dynamic-nodejs-web-app/
