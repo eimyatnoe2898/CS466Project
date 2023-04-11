@@ -9,7 +9,7 @@ const db = mysql.createConnection(
         host: 'localhost',
         user: 'root',
         password: 'Sql783knui1-1l;/klaa-9',
-        database: 'myDB'
+        database: 'tpcc_database'
     }
 );
 

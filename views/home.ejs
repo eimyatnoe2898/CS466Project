@@ -7,7 +7,7 @@
     <title>Make New Order</title>
 </head>
 <body>
-  <div class="create-blog content">
+  <!-- <div class="create-blog content">
     <form action="/customer/newOrder" method="POST">
       <label for="title">Name:</label>
       <input type="text" id="title" name="name" required />
@@ -21,6 +21,139 @@
         required
       />
       <input type="submit" name="submit_button" class="btn btn-primary" value="Add" />
+    </form>
+  </div> -->
+
+  <div class = "form_inputs">
+    <h1>TPC-C benchmark with IBM Bluemix</h1>
+    <form action = "/customer/newOrder" method = "POST">
+      <label for = "w_id">Select Warehouse:</label>
+      <input type = "number" id = "w_id" name="w_id" required>
+      <label for = "d_id">Select District: </label>
+      <input type = "number" id = "d_id" name = "d_id" required>
+      <label for = "c_id">Select Customer: </label>
+      <input type = "number" id = "c_id" nmae = "c_id" required>
+
+      <table style="width:100%">
+        <tr>
+          <th>OL_I_ID</th>
+          <th>OL_SUPPLY_W_ID</th>
+          <th>OL_QUANTITY</th>
+        </tr>
+        <tr>
+          <td>
+            <input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
+          </td>
+          <td>
+            <input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
+          </td>
+        </tr>
+        
+      </table>
+      <input type="submit" name="submit_button" class="btn btn-primary" value="Perform New Order Transaction" />
+
     </form>
   </div>
       
