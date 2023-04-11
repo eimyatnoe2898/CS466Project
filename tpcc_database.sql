@@ -75,7 +75,10 @@ CREATE TABLE stock (
   s_order_cnt INT NOT NULL,
   s_remote_cnt INT NOT NULL,
   s_data VARCHAR(50),
-  PRIMARY KEY (s_i_id, s_w_id)
+  PRIMARY KEY (s_i_id, s_w_id),
+  CONSTRAINT fk_stock_item FOREIGN KEY (s_i_id) REFERENCES item (i_id),
+  CONSTRAINT fk_stock_warehouse FOREIGN KEY (s_w_id) REFERENCES warehouse (w_id)
+
 );
 
 -- Create the orders table
@@ -88,8 +91,11 @@ CREATE TABLE orders (
   o_carrier_id INT,
   o_ol_cnt INT NOT NULL,
   o_all_local INT NOT NULL,
-  PRIMARY KEY (o_id, o_d_id, o_w_id)
+  PRIMARY KEY (o_id, o_d_id, o_w_id),
+  CONSTRAINT fk_orders_customer FOREIGN KEY (o_c_id, o_d_id, o_w_id) REFERENCES customer (c_id, c_d_id, c_w_id)
+
 );
+
 
 CREATE TABLE order_line (
   ol_o_id INT NOT NULL,
@@ -103,6 +109,8 @@ CREATE TABLE order_line (
   ol_amount FLOAT NOT NULL,
   ol_dist_info CHAR(24) NOT NULL,
   PRIMARY KEY (ol_o_id, ol_d_id, ol_w_id, ol_number),
+  CONSTRAINT fk_order_line_order FOREIGN KEY (ol_o_id, ol_d_id, ol_w_id) REFERENCES orders (o_id, o_d_id, o_w_id),
+  CONSTRAINT fk_order_line_stock FOREIGN KEY (ol_i_id, ol_supply_w_id) REFERENCES stock (s_i_id, s_w_id),
   INDEX (ol_supply_w_id)
 );
 
@@ -124,12 +132,17 @@ CREATE TABLE history (
   h_date TIMESTAMP NOT NULL,
   h_amount FLOAT NOT NULL,
   h_data VARCHAR(24),
-  INDEX (h_c_w_id, h_c_d_id, h_c_id)
+  INDEX (h_c_w_id, h_c_d_id, h_c_id),
+  CONSTRAINT fk_history_customer FOREIGN KEY (h_c_id, h_c_d_id, h_c_w_id) REFERENCES customer (c_id, c_d_id, c_w_id),
+  CONSTRAINT fk_history_district FOREIGN KEY (h_d_id, h_w_id) REFERENCES district (d_id, d_w_id)
+
 );
 
 CREATE TABLE new_order (
   no_o_id INT NOT NULL,
   no_d_id INT NOT NULL,
   no_w_id INT NOT NULL,
-  PRIMARY KEY (no_d_id, no_w_id, no_o_id)
+  PRIMARY KEY (no_d_id, no_w_id, no_o_id),
+  CONSTRAINT fk_new_order_orders FOREIGN KEY (no_o_id, no_d_id, no_w_id) REFERENCES orders (o_id, o_d_id, o_w_id)
+
 );
