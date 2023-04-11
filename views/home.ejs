@@ -7,18 +7,22 @@
     <title>Make New Order</title>
 </head>
 <body>
-    <form action="/submitOrders" method="post">
-        <label for="w_id">Enter name: </label>
-        <input
-          id="w_id"
-          type="number"
-          name="warehouseID"
-          value="Default name for team." />
-        <br>
-        <label for = "d_id">Enter </label>
-        <input type = "number" id = "d_id">
-        <input type="submit" value="OK" />
-      </form>
+  <div class="create-blog content">
+    <form action="/customer/newOrder" method="POST">
+      <label for="title">Name:</label>
+      <input type="text" id="title" name="name" required />
+      <label for="snippet">Table:</label>
+      <input
+        type="number"
+        min="1"
+        max="8"
+        id="snippet"
+        name="tableNumber"
+        required
+      />
+      <input type="submit" name="submit_button" class="btn btn-primary" value="Add" />
+    </form>
+  </div>
       
 </body>
 </html>

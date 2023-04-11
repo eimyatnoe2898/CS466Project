@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 import mysql.connector
 import schedule
 import time
-import random
+import random4
 
 def insert_sql(fakeData):
     #create connection object

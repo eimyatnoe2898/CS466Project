@@ -14,12 +14,16 @@ app.set("view engine", "ejs")
 
 
 //middleware and static files
+const customerRoutes = require('./routes/customerRoutes');
 
 
 //routes
 app.get("/", (req, res) => {
   res.render("home");
 });
+
+//index routes
+app.use('/customer', customerRoutes);
 
 app.get
 //start server
