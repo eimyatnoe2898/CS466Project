@@ -83,6 +83,9 @@ CREATE TABLE customer (
   CONSTRAINT fk_customer_district FOREIGN KEY (c_d_id, c_w_id) REFERENCES district (d_id, d_w_id)
 );
 
+SELECT * FROM `customer`;
+SELECT DISTINCT c_id FROM `customer`;
+
 -- insert the customer data
 INSERT INTO `customer`(c_id, c_d_id, c_w_id, c_first, c_middle, c_last, c_street_1, 
 c_street_2, c_city, c_state, c_zip, c_phone, c_since) 
@@ -91,15 +94,17 @@ values
 "2020-01-01 15:10:10"),
 (2, 1, 2, "Riley", "LO", "Sanderson", "W Street", "E Street", "Chicago", "IL", "123456789", "0000000000000000", 
 "2020-01-01 15:10:10");
-
-(3, 4, 4, "Mindy", "Lilac", "Rior", "W Street", "E Street", "Orlando", "FL", "123456789", "0000000000000000", 
-"2020-01-01 15:10:10", "NA", 1500.00, 20.0, 245.67, 120.00, 5, "NULL"),
-(4, 4, 4, "Mindy", "Lilac", "Rior", "W Street", "E Street", "Orlando", "FL", "123456789", "0000000000000000", 
-"2020-01-01 15:10:10", "NA", 1500.00, 20.0, 245.67, 120.00, 5, "NULL"),
-(5, 3, 3, "Minne", "Winona", "Ryder", "W Street", "E Street", "Boston", "MS", "123456789", "0000000000000000", 
-"2020-01-01 15:10:10", "NA", 1500.00, 20.0, 245.67, 120.00, 5, "NULL"),
-(6, 2, 4, "Lady", "Like", "Sein", "W Street", "E Street", "Winona", "MN", "123456789", "0000000000000000", 
-"2020-01-01 15:10:10", "NA", 1500.00, 20.0, 245.67, 120.00, 5, "NULL");
+INSERT INTO `customer`(c_id, c_d_id, c_w_id, c_first, c_middle, c_last, c_street_1, 
+c_street_2, c_city, c_state, c_zip, c_phone, c_since) 
+values
+(3, 4, 4, "Mindy", "LL", "Rior", "W Street", "E Street", "Orlando", "FL", "123456789", "0000000000000000", 
+"2020-01-01 15:10:10"),
+(4, 4, 4, "Mindy", "LJ", "Rior", "W Street", "E Street", "Orlando", "FL", "123456789", "0000000000000000", 
+"2020-01-01 15:10:10"),
+(5, 3, 3, "Minne", "WN", "Ryder", "W Street", "E Street", "Boston", "MS", "123456789", "0000000000000000", 
+"2020-01-01 15:10:10"),
+(6, 2, 4, "Lady", "LK", "Sein", "W Street", "E Street", "Winona", "MN", "123456789", "0000000000000000", 
+"2020-01-01 15:10:10");
 
 
 -- Create the stock table

@@ -1,21 +1,48 @@
 //validate the user inputs of the new order transaction here
 const db = require("../models/database.js");
 
-const get_user_inputs = (req, res) => {
-  // res.redirect('./customer');
+const load_dropdown = (req, res) => {
+  let sql = "SELECT DISTINCT `w_id` FROM `warehouse` group by `w_id`";
+  let warehouseResult = null;
+  let districtResult = null;
+  let customerResult = null;
 
-  //here generate the drop down values for warehouse_id
-  db.query(
-    "SELECT DISTINCT `w_id` FROM `warehouse` group by `w_id`",
-    function (error, data) {
-      //here generate the drop down values for district_id
-
-      //here generate the drop down values for customer_id
-
-      //render the drop down values
-      res.render("home", { title: "Order Page", warehouse_data: data });
+  // get the warehouse data list
+  db.query(sql, (err, result) => {
+    if (err) {
+      console.log("warehouse data cannot be retrieved");
+    } else {
+      warehouseResult = result;
+      
+      console.log("warehouse data have been retrieved");
+      res.render('home', {title: 'Main Page', warehouseData: result});
     }
-  );
+  });
+
+  //get the districts list
+  let sql1 = "SELECT DISTINCT d_id FROM `district`;";
+  db.query(sql1, (err, result) => {
+    if (err) {
+      console.log("district data cannot be retrieved");
+    } else {
+      districtResult = result;
+      console.log("district data have been retrieved");
+      res.render("home", { title: "Main Page", warehouseData: warehouseResult, districtData: districtResult});
+    }
+  });
+
+  // //get the customer list
+  let sql2 = "SELECT DISTINCT c_id FROM `customer`";
+  db.query(sql2, (err, result) => {
+    if (err) {
+      console.log("customer data cannot be retrieved");
+    } else {
+      customerResult = result;
+      console.log("customer data have been retrieved");
+      res.render("home", { title: "Main Page", warehouseData: warehouseResult, districtData: districtResult, customerData: customerResult});
+    }
+  });
+
 };
 
 //load district data (dynamic dropdown)
@@ -55,4 +82,4 @@ const form_submit = (req, res) => {
   res.render("formSubmit", { title: "Check in", input: req.body });
 };
 
-module.exports = { get_user_inputs, form_submit };
+module.exports = { load_dropdown };
