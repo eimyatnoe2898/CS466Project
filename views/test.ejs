@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body style="text-align: center;">
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Pre-populated Form</title>
+      </head>
+      <body>
+        <form>
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName"><br>
+    
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName"><br>
+    
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email"><br>
+    
+          <label for="message">Message:</label>
+          <textarea id="message" name="message"></textarea><br>
+    
+          <button type="submit">Submit</button>
+        </form>
+    
+        <script>
+          const formData = {
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'johndoe@example.com',
+            message: 'Hello, World!'
+          };
+    
+          // Set the value of each input element
+          document.getElementById('firstName').value = formData.firstName;
+          document.getElementById('lastName').value = formData.lastName;
+          document.getElementById('email').value = formData.email;
+          document.getElementById('message').value = formData.message;
+        </script>
+      </body>
+    </html>
+    
+</body>
+</html>

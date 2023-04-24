@@ -1,0 +1,4 @@
+Constraints for each input data
+1. warehouse id (W_ID) = remains Constnat 
+2. district id (D_ID) = D_W_ID should be equal to W_ID
+3. customer id (C_D_ID) = C_D_ID should be equal to D_ID

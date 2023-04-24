@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Order Input</title>
+</head>
+<body>
+    <!--call the nav.ejs here-->
+    <nav>
+
+    </nav>
+
+    <!--call the header.ejs here -->
+    <header>
+        
+    </header>
+
+    <!--Form to add the order -->
+    <main>
+        <h1>TPC-C benchmark with IBM Bluemix</h1>
+        <form action="/newOrder" method="POST">
+            <!--first part will be for order headers: warehouse number, district number, customer number -->
+            <label for = "w_id" class = "input_labels">Select Warehouse: </label>
+            <input type = "text" name = "w_id" class = "inputs" required>
+            <br>
+            <label for = "d_id" class = "input_labels">Select District: </label>
+            <input type = "text" name = "d_id" class = "inputs"required>
+            <br>
+            <label for = "c_id" class = "input_labels">Select Customer: </label>
+            <input type = "text" name = "c_id" class = "inputs">
+            <br>
+            <!-- second part will be for variable number of items -->
+            <table>
+                <tr>
+                    <th>OL_I_ID</th>
+                    <th>OL_SUPPLY_W_ID</th>
+                    <th>OL_QUANTITY</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr>
+            </table>
+              <input type="submit" name="submit_button" class="btn btn-primary" value="Perform New Order Transaction" />
+        </form>
+    </main>
+
+    <!--call the footer.ejs here -->
+    <footer>
+
+    </footer>
+
+    
+</body>
+</html>

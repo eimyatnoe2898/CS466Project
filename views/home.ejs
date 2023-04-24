@@ -9,7 +9,7 @@
 <body>
   <div class = "form_inputs">
     <h1>TPC-C benchmark with IBM Bluemix</h1>
-    <form action = "/customer/newOrder" method = "POST">
+    <form action = "/newOrder" method = "POST">
       <label for = "w_id">Select Warehouse:</label>
       <select id="cars" name="w_id">
         <option value = "choose">Choose Warehouse ID</option>
@@ -38,8 +38,6 @@
           <option value="<%= customerId %>"><%= customerId %></option>
       <% })}%>
       </select>
-
-      
       <!--Form to Enter Orders-->
       <table>
         <tr>

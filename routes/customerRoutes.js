@@ -3,10 +3,9 @@ const express = require('express');
 const router = express.Router();
 const customerController = require('../controllers/customerController');
 
-//route the new order input page
-router.get('/', customerController.load_dropdown);
-//route to the new order result page
-// router.post('/newOrder', customerController.form_submit);
-// router.post('/getData', customerController.form_submit);
+router.get('/', customerController.load_form);
+// router.get('/', customerController.load_dropdown);
+router.post('/customer/checkin', customerController.check_in);
+// router.get('/get_data', customerController.get_dynamic_data);
 
 module.exports = router;
