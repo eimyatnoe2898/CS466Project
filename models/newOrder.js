@@ -1,11 +1,36 @@
-//Here, we will create objects of each orders in the cart using class
-class Item{
-    constructor(i_id, w_id, quantity)
+//import the sql, database
+
+class NewOrder
+{
+    constructor(itemData)
     {
-        this.i_id = i_id;
-        this.w_id = w_id;
-        this.quantity = quantity;
+        this.no_o_id = itemData['no_o_id'];
+        this.no_w_id = itemData['no_w_id'];
+        this.no_d_id = itemData['no_d_id'];
     }
 
-    
+    static fromJSON(jsonObj){
+        const menuItem = new Warehouse(jsonObject);
+        return menuItem;
+    }
+
+    get no_o_id()
+    {
+        return this.no_o_id;
+    }
+
+    get no_w_id()
+    {
+        return this.no_w_id;
+    }
+
+    get no_d_id()
+    {
+        return this.no_d_id;
+    }
+
+
+
 }
+
+module.exports = {NewOrder};

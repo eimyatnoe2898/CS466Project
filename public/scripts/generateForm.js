@@ -54,7 +54,6 @@ const populateForm = () => {
       document.getElementById('email').value = formData.email;
       document.getElementById('message').value = formData.message;
 
-
 }
 
 //method to generate random IDs
