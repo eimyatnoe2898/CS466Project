@@ -10,10 +10,10 @@ class generateData:
     def __init__(self):
         self.fake = Faker()  #create faker object for generating fake data
         self.mydb = mysql.connector.connect(   #connect to MySQL database
-            host="",
-            user="",
-            password="",
-            database=""
+            host="et8132so211",
+            user="user",
+            password="Tiger3210!",
+            database="TPCC_data"
         )
         self.cursor = self.mydb.cursor()
 
@@ -194,3 +194,5 @@ class generateData:
         
         self.mydb.commit()
         
+        # to insert data use methods
+        #example "insert_warehouse(10)" to insert 10 rows of dummy data into the warehouse"
