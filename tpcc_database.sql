@@ -113,7 +113,10 @@ CREATE TABLE item (
   i_data VARCHAR(50) NOT NULL,
   PRIMARY KEY (i_id)
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6ff564d7fa235aa5fd7ab11acbba0024a331318f
 INSERT INTO `item`(i_id, i_im_id, i_name, i_price, i_data)
 values
 (1, 100, 'Tjyvpgbzawrnkdlsfxc', 19.99, 'Lorem ipsum doloelit.'),
@@ -270,4 +273,8 @@ values
 (7, 2, 3),
 (8, 3, 1),
 (9, 1, 2),
+<<<<<<< HEAD
 (10, 2, 1);
+=======
+(10, 2, 1);
+>>>>>>> 6ff564d7fa235aa5fd7ab11acbba0024a331318f
