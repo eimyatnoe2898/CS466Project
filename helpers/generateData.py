@@ -9,16 +9,16 @@ class generateData:
     def __init__(self):
         self.fake = Faker()  #create faker object for generating fake data
         self.mydb = mysql.connector.connect(   #connect to MySQL database
-            host="localhost",
-            user="root",
-            password="Sql783knui1-1l;/klaa-9",
-            database="tpcc_database"
+            host="et8132so211",
+            user="user",
+            password="Tiger3210!",
+            database="TPCC_data"
         )
         self.cursor = self.mydb.cursor()
 
     #insert dummy data into warehouse table
-    def insert_warehouse(self, n):
-        for i in range(n):
+    def insert_warehouse(self):
+        for i in range(10):
             w_id = i+1
             w_name = self.fake.word()
             w_street_1 = self.fake.street_name()
@@ -35,53 +35,55 @@ class generateData:
         self.mydb.commit()
 
     #insert dummy data into district table     
-    def insert_district(self, n):
-        for i in range(n):
-            d_id = i+1
-            d_w_id = self.fake.random_int(min=1, max=n)
-            d_name = self.fake.word()
-            d_street_1 = self.fake.street_name()
-            d_street_2 = self.fake.building_number()
-            d_city = self.fake.city()
-            d_state = self.fake.state_abbr()
-            d_zip = self.fake.zipcode()
-            d_tax = self.fake.pyfloat(left_digits=2, right_digits=2, positive=True)
-            d_ytd = self.fake.pyfloat(left_digits=5, right_digits=2, positive=True)
-            d_next_o_id = self.fake.random_int(min=3001, max=4000)
+    def insert_district(self):
+        for i in range (10):
+            for j in range(100):
+                d_id = j+1
+                d_w_id = i+1
+                d_name = self.fake.word()
+                d_street_1 = self.fake.street_name()
+                d_street_2 = self.fake.building_number()
+                d_city = self.fake.city()
+                d_state = self.fake.state_abbr()
+                d_zip = self.fake.zipcode()
+                d_tax = self.fake.pyfloat(left_digits=2, right_digits=2, positive=True)
+                d_ytd = self.fake.pyfloat(left_digits=5, right_digits=2, positive=True)
+                d_next_o_id = self.fake.random_int(min=3001, max=4000)
 
-            sql = "INSERT INTO district (d_id, d_w_id, d_name, d_street_1, d_street_2, d_city, d_state, d_zip, d_tax, d_ytd, d_next_o_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            val = (d_id, d_w_id, d_name, d_street_1, d_street_2, d_city, d_state, d_zip, d_tax, d_ytd, d_next_o_id)
-            self.cursor.execute(sql, val)
+                sql = "INSERT INTO district (d_id, d_w_id, d_name, d_street_1, d_street_2, d_city, d_state, d_zip, d_tax, d_ytd, d_next_o_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                val = (d_id, d_w_id, d_name, d_street_1, d_street_2, d_city, d_state, d_zip, d_tax, d_ytd, d_next_o_id)
+                self.cursor.execute(sql, val)
         self.mydb.commit()
 
     #insert dummy data into customer table
-    def insert_customer(self, n):
-        for i in range(n):
-            c_id = i + 1
-            c_d_id = self.fake.random_int(min=1, max=10)
-            c_w_id = self.fake.random_int(min=1, max=5)
-            c_first = self.fake.first_name()
-            c_middle = self.fake.random_letter().upper()
-            c_last = self.fake.last_name()
-            c_street_1 = self.fake.street_address()
-            c_street_2 = self.fake.secondary_address()
-            c_city = self.fake.city()
-            c_state = self.fake.state_abbr()
-            c_zip = self.fake.zipcode()
-            c_phone = self.fake.phone_number()
-            c_since = self.fake.date_time_between(start_date='-5y', end_date='now')
-            c_credit = self.fake.random_element(elements=('GC', 'BC'))
-            c_credit_lim = self.fake.pyfloat(left_digits=4, right_digits=2, positive=True)
-            c_discount = self.fake.pyfloat(left_digits=1, right_digits=2, positive=True)
-            c_balance = self.fake.pyfloat(left_digits=4, right_digits=2, positive=True)
-            c_ytd_payment = self.fake.pyfloat(left_digits=3, right_digits=2, positive=True)
-            c_payment_cnt = self.fake.random_int(min=0, max=100)
-            c_delivery_cnt = self.fake.random_int(min=0, max=100)
-            c_data = self.fake.text(max_nb_chars=500)
+    def insert_customer(self):
+        for i in range(10):
+            for k in range(3000):
+                c_id = k + 1
+                c_d_id = i + 1
+                c_w_id = self.fake.random_int(min=1, max=5)
+                c_first = self.fake.first_name()
+                c_middle = self.fake.random_letter().upper()
+                c_last = self.fake.last_name()
+                c_street_1 = self.fake.street_address()
+                c_street_2 = self.fake.secondary_address()
+                c_city = self.fake.city()
+                c_state = self.fake.state_abbr()
+                c_zip = self.fake.zipcode()
+                c_phone = self.fake.phone_number()
+                c_since = self.fake.date_time_between(start_date='-5y', end_date='now')
+                c_credit = self.fake.random_element(elements=('GC', 'BC'))
+                c_credit_lim = self.fake.pyfloat(left_digits=4, right_digits=2, positive=True)
+                c_discount = self.fake.pyfloat(left_digits=1, right_digits=2, positive=True)
+                c_balance = self.fake.pyfloat(left_digits=4, right_digits=2, positive=True)
+                c_ytd_payment = self.fake.pyfloat(left_digits=3, right_digits=2, positive=True)
+                c_payment_cnt = self.fake.random_int(min=0, max=100)
+                c_delivery_cnt = self.fake.random_int(min=0, max=100)
+                c_data = self.fake.text(max_nb_chars=500)
 
-            sql = "INSERT INTO customer (c_id, c_d_id, c_w_id, c_first, c_middle, c_last, c_street_1, c_street_2, c_city, c_state, c_zip, c_phone, c_since, c_credit, c_credit_lim, c_discount, c_balance, c_ytd_payment, c_payment_cnt, c_delivery_cnt, c_data) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) "
-            val = (c_id, c_d_id, c_w_id, c_first, c_middle, c_last, c_street_1, c_street_2, c_city, c_state, c_zip, c_phone, c_since, c_credit, c_credit_lim, c_discount, c_balance, c_ytd_payment, c_payment_cnt, c_delivery_cnt, c_data)
-            self.cursor.execute(sql, val)
+                sql = "INSERT INTO customer (c_id, c_d_id, c_w_id, c_first, c_middle, c_last, c_street_1, c_street_2, c_city, c_state, c_zip, c_phone, c_since, c_credit, c_credit_lim, c_discount, c_balance, c_ytd_payment, c_payment_cnt, c_delivery_cnt, c_data) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) "
+                val = (c_id, c_d_id, c_w_id, c_first, c_middle, c_last, c_street_1, c_street_2, c_city, c_state, c_zip, c_phone, c_since, c_credit, c_credit_lim, c_discount, c_balance, c_ytd_payment, c_payment_cnt, c_delivery_cnt, c_data)
+                self.cursor.execute(sql, val)
         self.mydb.commit()
 
     #insert dummy data into item table
