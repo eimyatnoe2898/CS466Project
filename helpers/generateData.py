@@ -37,7 +37,7 @@ class generateData:
 
     #insert dummy data into district table     
     def insert_district(self):
-        for i in range (10)
+        for i in range (10):
             for j in range(100):
                 d_id = j+1
                 d_w_id = i+1
