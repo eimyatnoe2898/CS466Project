@@ -9,6 +9,7 @@ class Item
         this.i_name = itemData['i_name'];
         this.i_price = itemData['i_price'];
         this.i_data = itemData['i_data'];
+        this.i_stock = null;
     }
 
     static fromJSON(jsonObj){
@@ -41,6 +42,10 @@ class Item
         return this.i_data;
     }
 
+    set i_stock(newIstock)
+    {
+        this.i_stock = newIstock;
+    }
 
 
 }

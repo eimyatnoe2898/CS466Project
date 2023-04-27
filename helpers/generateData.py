@@ -6,14 +6,13 @@ import random
 
 class generateData: 
     
-
     def __init__(self):
         self.fake = Faker()  #create faker object for generating fake data
         self.mydb = mysql.connector.connect(   #connect to MySQL database
-            host="et8132so211",
-            user="user",
-            password="Tiger3210!",
-            database="TPCC_data"
+            host="localhost",
+            user="root",
+            password="Sql783knui1-1l;/klaa-9",
+            database="tpcc_database"
         )
         self.cursor = self.mydb.cursor()
 
@@ -196,3 +195,9 @@ class generateData:
         
         # to insert data use methods
         #example "insert_warehouse(10)" to insert 10 rows of dummy data into the warehouse"
+
+
+dataGenerator = generateData()
+# dataGenerator.insert_warehouse(10) - RUN
+dataGenerator.insert_district(100)
+

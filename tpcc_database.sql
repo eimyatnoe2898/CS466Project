@@ -15,17 +15,7 @@ CREATE TABLE warehouse (
   w_ytd FLOAT NOT NULL
 );
 
--- insert the warehouse data
-INSERT INTO `warehouse`(w_id, w_name, w_street_1, w_street_2, w_city, w_state, w_zip, w_tax, w_ytd) 
-values
-(1, "WH1", "Glen Street", "Haven Street", "Chicago", "IL", "123456789", 1.2, 3.0),
-(2, "WH2", "Halten Street", "Main Street", "Winona", "MN", "123456789", 2.5, 4.5),
-(3, "WH3", "Lilac Street", "Meteo Street", "Boston", "MS", "123456789", 2.5, 2.0),
-(4, "WH4", "Minne Street", "Lander Street", "Orlando", "FL", "123456789", 3.5, 6.0);
-
-SELECT DISTINCT `w_id` FROM `warehouse` group by `w_id`;
--- SELECT DISTINCT w_id FROM `warehouse`;
-
+SELECT * FROM `warehouse`;
 
 -- Create the district table
 CREATE TABLE district (
@@ -44,16 +34,7 @@ CREATE TABLE district (
   CONSTRAINT fk_district_warehouse FOREIGN KEY (d_w_id) REFERENCES warehouse (w_id)
 );
 
--- insert the district data
-INSERT INTO `district`(d_id, d_w_id, d_name, d_street_1, d_street_2, d_city, d_state, d_zip, d_tax, d_ytd, d_next_o_id) 
-values
-(1, 2, "DT1", "Glen Street", "Haven Street", "Chicago", "IL", "123456789", 1.2, 3.0, 2),
-(2, 4, "DT2", "Halten Street", "Main Street", "Winona", "MN", "123456789", 2.5, 4.5, 3),
-(3, 3, "DT3", "Lilac Street", "Meteo Street", "Boston", "MS", "123456789", 2.5, 2.0, 5),
-(4, 4, "DT4", "Minne Street", "Lander Street", "Orlando", "FL", "123456789", 3.5, 6.0, 1);
-
 SELECT * FROM `district`;
-SELECT DISTINCT d_id FROM `district`;
 
 -- Create the customer table
 CREATE TABLE customer (
