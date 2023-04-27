@@ -1,5 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+		header {
+			text-align: center;
+			color:blue;
+			font-size:30px;
+		}
+		body {
+			color:black;
+			center:auto;
+			text-align: center;
+			background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+		}
+		table { 
+			text-align: center;
+			align:center;
+			border: 1px solid #333;
+			width: 40%;
+			margin-left:30%;
+			margin-right:30%;
+		}
+		footer {
+			text-align:center;
+			background-color: #abbaba;
+			color: #000;
+		}
+		.cust_info{
+			text-align:left;
+			col
+		}
+		.btn_new_Trans{
+			color:white;
+			background-color: blue;
+		}
+		h1 {font-size:15;
+		}
+		thead {backgroud-color: #2370d8; color: green;
+		}
+		tbody:nth-child(even) {background-color: #f2f2f2;
+		}
+	</style>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,53 +47,35 @@
     <title>Submitted</title>
 </head>
 <body>
-<<<<<<< HEAD
-    <!--Call header.ejs here-->
-
-    <!--Call nav.ejs here -->
-
-    <!-- Show the new order results here -->
-    <h1>This is result page</h1>
-    <%= inputs["w_id"] %>
-
-    <!--if order successful, show order results page-->
-
-    <!-- if order was not successful, show what order failed-->
-=======
+	<header>
+		<h1>TPC-C benchmark with IBM Bluemix</h1>
+    </header>
     <h1>New Order Results Page</h1>
-    <%= input %>
-	<style>
-		table {border: 1px solid;}
-		tr {color: blue;}
-		td  {color: red;}
-		thead {backgroud-color: #2370d8;color: white;}
-		tbody:nth-child(even) {background-color: #f2f2f2;}
-	</style>
-	<table>
+	<table class = "cust_info">
 		<tr>
 			<td> </td>
 			<td> </td>
-			<td>New Order</td>
+			<td>New Order        </td>
         </tr>
 		<tr>
-			<td>Warehouse: </td>
-			<td>District: </td>
-			<td>Date:</td>
+			<td>Warehouse:           </td>
+			<td>District:           </td>
+			<td>Date:             </td>
         </tr>
 		<tr>
-			<td>Customer: </td>
-			<td>Name: </td>
-			<td>Credit: </td>
-			<td>Disc: </td>
+			<td>Customer:           </td>
+			<td>Name:          </td>
+			<td>Credit:        </td>
+			<td>Disc:           </td>
         </tr>
 		<tr>
-			<td>Order Number: </td>
-			<td>Number of Lines: </td>
-			<td>W_tax: </td>
-			<td>D_txt: </td>
+			<td>Order Number:         </td>
+			<td>Number of Lines:            </td>
+			<td>W_tax:         </td>
+			<td>D_txt:       </td>
         </tr>
 	</table>
-	<table>
+	<table class = "order_details">
 		<thead>
 			<th>Supp_W</th>
 			<th>Item_ID</th>
@@ -65,9 +87,25 @@
 			<th>Amount</th>
         </thead>
 		<tbody>
-		
+			<tr><td> 0001 </td><td> 1000 </td><td> aewrghaertha </td><td> 10 </td><td> 99 </td><td> G </td><td> 19 </td><td> $190 </td></tr>
+			<tr><td> 0001 </td><td> 1001 </td><td> aetrhaefhdgh </td><td> 40 </td><td> 99 </td><td> G </td><td> 42 </td><td> $1680 </td></tr>
+			<tr><td> 0001 </td><td> 1002 </td><td> ftghsrthe4tr </td><td> 98 </td><td> 99 </td><td> G </td><td> 52 </td><td> $5096 </td></tr>
+			<tr><td> 0001 </td><td> 1003 </td><td> egaerfhdfhet </td><td> 56 </td><td> 99 </td><td> G </td><td> 54 </td><td> $3024 </td></tr>
+			<tr><td> 0001 </td><td> 1004 </td><td> erhgae45r24y </td><td> 25 </td><td> 99 </td><td> G </td><td> 21 </td><td> $525 </td></tr>
+			<tr><td> 0001 </td><td> 1005 </td><td> w4ytgaewry55 </td><td> 05 </td><td> 99 </td><td> G </td><td> 19 </td><td> $95 </td></tr>
 		</tbody>
 	</table>
->>>>>>> 6ff564d7fa235aa5fd7ab11acbba0024a331318f
+	<table class = "order_sum">
+		<tr><td> Exicution Status: Order was successfully Placed </td><td> Total Cost: $10,610 </td></tr>
+	</table>
+	<input type="submit" name="submit_button" class="btn_new_Trans" value="Start New Transaction" />
 </body>
+<div class="container">
+	  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+	      <p class="col-md-4 mb-0 text-muted">&copy; TPCC Benchmark</p>
+	      <ul class="nav col-md-4 justify-content-end">
+		  <p><a href="/" class="nav-link px-2">Home</a><p>
+	      </ul>
+	  </footer>
+	</div>
 </html>
