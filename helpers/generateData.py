@@ -18,7 +18,7 @@ class generateData:
         self.cursor = self.mydb.cursor()
 
     #insert dummy data into warehouse table
-    def insert_warehouse(self, n):
+    def insert_warehouse(self):
         for i in range(10):
             w_id = i+1
             w_name = self.fake.word()
@@ -36,7 +36,7 @@ class generateData:
         self.mydb.commit()
 
     #insert dummy data into district table     
-    def insert_district(self, n):
+    def insert_district(self):
         for i in range (10)
             for j in range(100):
                 d_id = j+1
@@ -57,7 +57,7 @@ class generateData:
         self.mydb.commit()
 
     #insert dummy data into customer table
-    def insert_customer(self, n):
+    def insert_customer(self):
         for i in range(10):
             for k in range(3000):
                 c_id = k + 1
