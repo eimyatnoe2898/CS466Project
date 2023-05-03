@@ -11,13 +11,6 @@ const db = mysql.createConnection(
         password: 'Sql783knui1-1l;/klaa-9',
         database: 'tpcc_database'
     }
-
-    // {
-    //     host: 'et8132so211',
-    //     user: 'root',
-    //     password: 'Tiger3210!',
-    //     database: 'tpcc_database'
-    // }
 );
 
 //connect to datbase

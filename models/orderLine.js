@@ -17,8 +17,7 @@ class Order
 
     constructor(orderData)
     {
-        this.o_id = orderData[0];
-        this.o_c_id = orderData[1];
+        this.ol_o_id = orderData[0];
         this.o_d_id = orderData[2];
         this.o_w_id = orderData[3];
         this.o_entry_d = orderData[4];

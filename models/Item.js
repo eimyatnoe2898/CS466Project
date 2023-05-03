@@ -17,35 +17,35 @@ class Item
         return menuItem;
     }
 
-    get i_id()
-    {
-        return this.i_id;
-    }
+    // get i_id()
+    // {
+    //     return this.i_id;
+    // }
 
-    get i_name()
-    {
-        return this.i_name;
-    }
+    // get i_name()
+    // {
+    //     return this.i_name;
+    // }
 
-    get i_im_id()
-    {
-        return this.i_im_id;
-    }
+    // get i_im_id()
+    // {
+    //     return this.i_im_id;
+    // }
 
-    get i_price()
-    {
-        return this.i_price;
-    }
+    // get i_price()
+    // {
+    //     return this.i_price;
+    // }
 
-    get i_data()
-    {
-        return this.i_data;
-    }
+    // get i_data()
+    // {
+    //     return this.i_data;
+    // }
 
-    set i_stock(newIstock)
-    {
-        this.i_stock = newIstock;
-    }
+    // set i_stock(newIstock)
+    // {
+    //     this.i_stock = newIstock;
+    // }
 
 
 }

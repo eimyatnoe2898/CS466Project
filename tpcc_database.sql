@@ -16,7 +16,7 @@ CREATE TABLE warehouse (
 );
 
 SELECT * FROM `warehouse`;
-
+SELECT DISTINCT `w_id` FROM `warehouse`;
 -- Create the district table
 CREATE TABLE district (
   d_id INT NOT NULL,
@@ -35,7 +35,10 @@ CREATE TABLE district (
 );
 
 SELECT * FROM `district`;
-
+SELECT DISTINCT  d_id, d_w_id
+FROM district;
+SELECT DISTINCT COUNT(*) d_id, d_w_id
+FROM district;
 -- Create the customer table
 CREATE TABLE customer (
   c_id INT NOT NULL,
@@ -65,6 +68,11 @@ CREATE TABLE customer (
 
 SELECT * FROM `customer`;
 SELECT DISTINCT c_id FROM `customer`;
+SELECT * FROM `customer`;
+SELECT DISTINCT  c_id, c_d_id, c_w_id
+FROM customer;
+SELECT DISTINCT COUNT(*) c_id, c_d_id, c_w_id
+FROM customer;
 
 -- insert the customer data
 INSERT INTO `customer`(c_id, c_d_id, c_w_id, c_first, c_middle, c_last, c_street_1, 
@@ -94,10 +102,8 @@ CREATE TABLE item (
   i_data VARCHAR(50) NOT NULL,
   PRIMARY KEY (i_id)
 );
-<<<<<<< HEAD
 
-=======
->>>>>>> 6ff564d7fa235aa5fd7ab11acbba0024a331318f
+SELECT * FROM `item`;
 INSERT INTO `item`(i_id, i_im_id, i_name, i_price, i_data)
 values
 (1, 100, 'Tjyvpgbzawrnkdlsfxc', 19.99, 'Lorem ipsum doloelit.'),
@@ -135,6 +141,8 @@ CREATE TABLE stock (
   CONSTRAINT fk_stock_warehouse FOREIGN KEY (s_w_id) REFERENCES warehouse (w_id)
 
 );
+
+SELECT * FROM `stock`;
 INSERT INTO `stock`(s_i_id, s_w_id, s_quantity, s_dist_01, s_dist_02, s_dist_03, s_dist_04, s_dist_05,
  s_dist_06, s_dist_07, s_dist_08, s_dist_09, s_dist_10, s_ytd, s_order_cnt, s_remote_cnt, s_data)
 values
@@ -163,6 +171,8 @@ CREATE TABLE orders (
   CONSTRAINT fk_orders_customer FOREIGN KEY (o_c_id, o_d_id, o_w_id) REFERENCES customer (c_id, c_d_id, c_w_id)
 
 );
+
+SELECT * FROM `orders`;
 INSERT INTO `orders`(o_id, o_c_id, o_d_id, o_w_id, o_entry_d, o_carrier_id,
  o_ol_cnt, o_all_local) 
 values
@@ -235,6 +245,7 @@ values
 (221, 1, 3, 1, 3, '2023-04-15 14:45:00', 175.25, 'Different data'),
 (91, 2, 1, 2, 1, '2023-04-14 11:30:00', 90.00, 'New data entry');
 
+DROP TABLE if exists `new_order`;
 CREATE TABLE new_order (
   no_o_id INT NOT NULL,
   no_d_id INT NOT NULL,
@@ -254,8 +265,5 @@ values
 (7, 2, 3),
 (8, 3, 1),
 (9, 1, 2),
-<<<<<<< HEAD
 (10, 2, 1);
-=======
 (10, 2, 1);
->>>>>>> 6ff564d7fa235aa5fd7ab11acbba0024a331318f

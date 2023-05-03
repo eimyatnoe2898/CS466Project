@@ -12,22 +12,42 @@ class Customer
         this.c_credit = customerData['c_credit'];
     }
 
-    //use this method to send tax back to the homepage
-
     static fromJSON(jsonObj){
         const menuItem = new Warehouse(jsonObject);
         return menuItem;
     }
 
-    // get W_id()
-    // {
-    //     return this.w_id;
-    // }
+    get c_id()
+    {
+        return this.c_id;
+    }
 
-    // get W_tax()
-    // {
-    //     return this.w_tax;
-    // }
+    get c_w_id()
+    {
+        return this.c_w_id;
+    }
+
+    get c_d_id()
+    {
+        return this.c_d_id;
+    }
+
+    get c_discount()
+    {
+        return this.c_discount;
+    }
+
+    get c_last()
+    {
+        return this.c_last;
+    }
+
+    get c_credit()
+    {
+        return this.c_last;
+    }
+    
+
 
 }
 

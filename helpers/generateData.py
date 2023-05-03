@@ -2,23 +2,28 @@
 from faker import Faker
 import mysql.connector
 import random
-
+import datetime;
 
 class generateData: 
     
     def __init__(self):
         self.fake = Faker()  #create faker object for generating fake data
         self.mydb = mysql.connector.connect(   #connect to MySQL database
-            host="et8132so211",
-            user="user",
-            password="Tiger3210!",
-            database="TPCC_data"
+            # host="et8132so211",
+            # user="user",
+            # password="Tiger3210!",
+            # database="TPCC_data"
+            host="localhost",
+            user="root",
+            password="Sql783knui1-1l;/klaa-9",
+            database="tpcc_database"
         )
         self.cursor = self.mydb.cursor()
 
+    #10 warehouses
     #insert dummy data into warehouse table
     def insert_warehouse(self):
-        for i in range(10):
+        for i in range(1):
             w_id = i+1
             w_name = self.fake.word()
             w_street_1 = self.fake.street_name()
@@ -34,18 +39,41 @@ class generateData:
             self.cursor.execute(sql, val)
         self.mydb.commit()
 
+    #10 districts for each warehouse
     #insert dummy data into district table     
     def insert_district(self):
-        for i in range (10):
-            for j in range(100):
+        for i in range (1):
+            for j in range(10):
                 d_id = j+1
                 d_w_id = i+1
-                d_name = self.fake.word()
-                d_street_1 = self.fake.street_name()
-                d_street_2 = self.fake.building_number()
-                d_city = self.fake.city()
+                while True:
+                    d_name = self.fake.word()
+                    if len(d_name) <= 10:
+                        print(d_name)
+                        break
+                while True:
+                    d_street_1 = self.fake.street_name()
+                    if len(d_street_1) <= 20:
+                        print(d_street_1)
+                        break
+                while True:
+                    d_street_2 = self.fake.building_number()
+                    if len(d_street_2) <= 20:
+                        print(d_street_2)
+                        break
+                while True:
+                    d_city = self.fake.city()
+                    if len(d_city) <= 20:
+                        print(d_city)
+                        break
                 d_state = self.fake.state_abbr()
+                # while True:
+                #     d_zip = self.fake.zipcode()
+                #     if len(d_zip) == 9:
+                #         print(d_zip)
+                #         break
                 d_zip = self.fake.zipcode()
+
                 d_tax = self.fake.pyfloat(left_digits=2, right_digits=2, positive=True)
                 d_ytd = self.fake.pyfloat(left_digits=5, right_digits=2, positive=True)
                 d_next_o_id = self.fake.random_int(min=3001, max=4000)
@@ -55,23 +83,57 @@ class generateData:
                 self.cursor.execute(sql, val)
         self.mydb.commit()
 
+    #3000 customers for each district
     #insert dummy data into customer table
     def insert_customer(self):
         for i in range(10):
             for k in range(3000):
                 c_id = k + 1
                 c_d_id = i + 1
-                c_w_id = self.fake.random_int(min=1, max=5)
-                c_first = self.fake.first_name()
+                # c_w_id = self.fake.random_int(min=1, max=5)
+                c_w_id = 1
+                while True:
+                    c_first = self.fake.first_name()
+                    if len(c_first) <= 20:
+                        print(c_first)
+                        break
                 c_middle = self.fake.random_letter().upper()
-                c_last = self.fake.last_name()
-                c_street_1 = self.fake.street_address()
-                c_street_2 = self.fake.secondary_address()
-                c_city = self.fake.city()
-                c_state = self.fake.state_abbr()
+                print(c_middle)
+                while True:
+                    c_last = self.fake.last_name()
+                    if len(c_last) <= 20:
+                        print(c_last)
+                        break
+                while True:
+                    c_street_1 = self.fake.street_address()
+                    if len(c_street_1) <= 20:
+                        print(c_street_1)
+                        break
+                while True:
+                    c_street_2 = self.fake.secondary_address()
+                    if len(c_street_2) <= 20:
+                        print(c_street_2)
+                        break
+                while True:
+                    c_city = self.fake.city()
+                    if len(c_city) <= 20:
+                        print(c_city)
+                        break
+                while True:
+                    c_state = self.fake.state_abbr()
+                    if len(c_state) == 2:
+                        print(c_state)
+                        break
                 c_zip = self.fake.zipcode()
-                c_phone = self.fake.phone_number()
-                c_since = self.fake.date_time_between(start_date='-5y', end_date='now')
+                while True:
+                    c_phone = self.fake.phone_number()
+                    if len(c_phone) == 16:
+                        print(c_phone)
+                        break
+                # c_since = self.fake.date_time_between(start_date='-5y', end_date='now')
+                # c_since = self.fake.date_time_between(start_date='-5y', end_date='now').strftime('%Y-%m-%d %H:%M:%S')
+                # print(c_since)
+                c_since = "2020-01-01 15:10:10";
                 c_credit = self.fake.random_element(elements=('GC', 'BC'))
                 c_credit_lim = self.fake.pyfloat(left_digits=4, right_digits=2, positive=True)
                 c_discount = self.fake.pyfloat(left_digits=1, right_digits=2, positive=True)
@@ -91,7 +153,11 @@ class generateData:
         for i in range(n):
             i_id = i+1
             i_im_id = self.fake.random_int(min=1, max=10000)
-            i_name = self.fake.word()
+            while True:
+                i_name = self.fake.word()
+                if len(i_name) <= 24:
+                    print(i_name)
+                    break            
             i_price = round(self.fake.pyfloat(min_value=1, max_value=1000, right_digits=2), 2)
             i_data = self.fake.text(max_nb_chars=50)
 
@@ -104,7 +170,9 @@ class generateData:
     def insert_stock(self, n):
         for i in range(n):
             s_i_id = i+1
-            s_w_id = self.fake.random_int(min=1, max=10)
+            print(s_i_id)
+            # s_w_id = self.fake.random_int(min=1, max=10)
+            s_w_id = 1
             s_quantity = self.fake.random_int(min=10, max=100)
             s_dist_01 = self.fake.text(max_nb_chars=24)
             s_dist_02 = self.fake.text(max_nb_chars=24)
@@ -200,6 +268,9 @@ class generateData:
 
 
 dataGenerator = generateData()
-# dataGenerator.insert_warehouse(10) - RUN
-dataGenerator.insert_district(100)
+# dataGenerator.insert_warehouse()
+# dataGenerator.insert_district()
+# dataGenerator.insert_customer()
+# dataGenerator.insert_item(100000)
+dataGenerator.insert_stock(100000)
 
