@@ -17,6 +17,7 @@ CREATE TABLE warehouse (
 
 SELECT * FROM `warehouse`;
 SELECT DISTINCT `w_id` FROM `warehouse`;
+
 -- Create the district table
 CREATE TABLE district (
   d_id INT NOT NULL,
@@ -35,11 +36,14 @@ CREATE TABLE district (
 );
 
 SELECT * FROM `district`;
-SELECT DISTINCT  d_id, d_w_id
+SELECT DISTINCT d_id, d_w_id
 FROM district;
 SELECT DISTINCT COUNT(*) d_id, d_w_id
 FROM district;
+
+
 -- Create the customer table
+DROP TABLE customer;
 CREATE TABLE customer (
   c_id INT NOT NULL,
   c_d_id INT NOT NULL,
@@ -67,10 +71,10 @@ CREATE TABLE customer (
 );
 
 SELECT * FROM `customer`;
-SELECT DISTINCT c_id FROM `customer`;
+SELECT DISTINCT * FROM `customer`;
 SELECT * FROM `customer`;
-SELECT DISTINCT  c_id, c_d_id, c_w_id
-FROM customer;
+SELECT DISTINCT c_id, c_d_id, c_w_id
+FROM customer WHERE c_d_id = 10 AND c_w_id = 1;
 SELECT DISTINCT COUNT(*) c_id, c_d_id, c_w_id
 FROM customer;
 
@@ -104,6 +108,8 @@ CREATE TABLE item (
 );
 
 SELECT * FROM `item`;
+SELECT * FROM `item` WHERE `i_id` = 10000000000000;
+SELECT DISTINCT COUNT(*) FROM `item`;
 INSERT INTO `item`(i_id, i_im_id, i_name, i_price, i_data)
 values
 (1, 100, 'Tjyvpgbzawrnkdlsfxc', 19.99, 'Lorem ipsum doloelit.'),
@@ -118,6 +124,7 @@ values
 (10, 109, 'Kjmtbnxpvzgcrfaylqw', 109.99, 'Integer puin.');
 
 -- Create the stock table
+DROP TABLE stock;
 CREATE TABLE stock (
   s_i_id INT NOT NULL,
   s_w_id INT NOT NULL,
@@ -143,6 +150,8 @@ CREATE TABLE stock (
 );
 
 SELECT * FROM `stock`;
+SELECT DISTINCT COUNT(*) s_i_id, s_w_id
+FROM `stock`;
 INSERT INTO `stock`(s_i_id, s_w_id, s_quantity, s_dist_01, s_dist_02, s_dist_03, s_dist_04, s_dist_05,
  s_dist_06, s_dist_07, s_dist_08, s_dist_09, s_dist_10, s_ytd, s_order_cnt, s_remote_cnt, s_data)
 values
@@ -172,6 +181,8 @@ CREATE TABLE orders (
 
 );
 
+DELETE FROM `orders`;
+
 SELECT * FROM `orders`;
 INSERT INTO `orders`(o_id, o_c_id, o_d_id, o_w_id, o_entry_d, o_carrier_id,
  o_ol_cnt, o_all_local) 
@@ -184,6 +195,7 @@ values
 (1006, 5, 3, 3, '2023-04-20 17:30:40', NULL, 6, 1),
 (1007, 6, 2, 4, '2023-04-19 12:50:55', 1, 3, 0);
 
+DROP TABLE `order_line`;
 CREATE TABLE order_line (
   ol_o_id INT NOT NULL,
   ol_d_id INT NOT NULL,
@@ -200,6 +212,10 @@ CREATE TABLE order_line (
   CONSTRAINT fk_order_line_stock FOREIGN KEY (ol_i_id, ol_supply_w_id) REFERENCES stock (s_i_id, s_w_id),
   INDEX (ol_supply_w_id)
 );
+
+DELETE FROM `order_line`;
+
+SELECT * FROM `order_line`;
 INSERT INTO `order_line`(ol_o_id, ol_d_id, ol_w_id, ol_number, ol_i_id, ol_supply_w_id, 
 ol_delivery_d, ol_quantity, ol_amount, ol_dist_info)
 values
@@ -254,6 +270,8 @@ CREATE TABLE new_order (
   CONSTRAINT fk_new_order_orders FOREIGN KEY (no_o_id, no_d_id, no_w_id) REFERENCES orders (o_id, o_d_id, o_w_id)
 
 );
+DELETE FROM `new_order`;
+
 INSERT INTO `new_order`(no_o_id, no_d_id, no_w_id)
 values
 (1, 2, 3),

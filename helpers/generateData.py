@@ -20,10 +20,10 @@ class generateData:
         )
         self.cursor = self.mydb.cursor()
 
-    #10 warehouses
+    #2 warehouses - 1 remote 1 local
     #insert dummy data into warehouse table
     def insert_warehouse(self):
-        for i in range(1):
+        for i in range(2):
             w_id = i+1
             w_name = self.fake.word()
             w_street_1 = self.fake.street_name()
@@ -39,10 +39,10 @@ class generateData:
             self.cursor.execute(sql, val)
         self.mydb.commit()
 
-    #10 districts for each warehouse
+    #10 districts for each warehouse - 20 districts
     #insert dummy data into district table     
     def insert_district(self):
-        for i in range (1):
+        for i in range (2):
             for j in range(10):
                 d_id = j+1
                 d_w_id = i+1
@@ -67,13 +67,7 @@ class generateData:
                         print(d_city)
                         break
                 d_state = self.fake.state_abbr()
-                # while True:
-                #     d_zip = self.fake.zipcode()
-                #     if len(d_zip) == 9:
-                #         print(d_zip)
-                #         break
                 d_zip = self.fake.zipcode()
-
                 d_tax = self.fake.pyfloat(left_digits=2, right_digits=2, positive=True)
                 d_ytd = self.fake.pyfloat(left_digits=5, right_digits=2, positive=True)
                 d_next_o_id = self.fake.random_int(min=3001, max=4000)
@@ -83,15 +77,22 @@ class generateData:
                 self.cursor.execute(sql, val)
         self.mydb.commit()
 
-    #3000 customers for each district
+    #3000 customers for each district - 20*1000 = 60000 customers
     #insert dummy data into customer table
-    def insert_customer(self):
-        for i in range(10):
-            for k in range(3000):
+    def insert_customer(self, n):
+        #for each district in the district
+        sql = "SELECT * FROM `district`"
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
+        for row in result:
+            print("Warehouse Id: " , row[1] )
+            print("District Id: " , row[0] )
+            print("----")
+            for k in range(n):
                 c_id = k + 1
-                c_d_id = i + 1
+                c_d_id = row[0]
                 # c_w_id = self.fake.random_int(min=1, max=5)
-                c_w_id = 1
+                c_w_id = row[1]
                 while True:
                     c_first = self.fake.first_name()
                     if len(c_first) <= 20:
@@ -148,7 +149,7 @@ class generateData:
                 self.cursor.execute(sql, val)
         self.mydb.commit()
 
-    #insert dummy data into item table
+    #insert dummy data into item table - 100000 items
     def insert_item(self, n):
         for i in range(n):
             i_id = i+1
@@ -160,39 +161,47 @@ class generateData:
                     break            
             i_price = round(self.fake.pyfloat(min_value=1, max_value=1000, right_digits=2), 2)
             i_data = self.fake.text(max_nb_chars=50)
-
             sql = "INSERT INTO item (i_id, i_im_id, i_name, i_price, i_data) VALUES (%s, %s, %s, %s, %s)"
             val = (i_id, i_im_id, i_name, i_price, i_data)
             self.cursor.execute(sql, val)
         self.mydb.commit()
 
     #insert dummy data into stock table
-    def insert_stock(self, n):
-        for i in range(n):
-            s_i_id = i+1
-            print(s_i_id)
-            # s_w_id = self.fake.random_int(min=1, max=10)
-            s_w_id = 1
-            s_quantity = self.fake.random_int(min=10, max=100)
-            s_dist_01 = self.fake.text(max_nb_chars=24)
-            s_dist_02 = self.fake.text(max_nb_chars=24)
-            s_dist_03 = self.fake.text(max_nb_chars=24)
-            s_dist_04 = self.fake.text(max_nb_chars=24)
-            s_dist_05 = self.fake.text(max_nb_chars=24)
-            s_dist_06 = self.fake.text(max_nb_chars=24)
-            s_dist_07 = self.fake.text(max_nb_chars=24)
-            s_dist_08 = self.fake.text(max_nb_chars=24)
-            s_dist_09 = self.fake.text(max_nb_chars=24)
-            s_dist_10 = self.fake.text(max_nb_chars=24)
-            s_ytd = self.fake.random_int(min=1000, max=10000)
-            s_order_cnt = self.fake.random_int(min=10, max=100)
-            s_remote_cnt = self.fake.random_int(min=1, max=10)
-            s_data = self.fake.text(max_nb_chars=50)
+    def insert_stock(self):
+        #for each item
+        sql = "SELECT COUNT(DISTINCT i_id) FROM item"
+        self.cursor.execute(sql)
+        itemCount = self.cursor.fetchone()[0]
+        print("Total Number of Items: " , itemCount)
 
-            sql = "INSERT INTO stock (s_i_id, s_w_id, s_quantity, s_dist_01, s_dist_02, s_dist_03, s_dist_04, s_dist_05, s_dist_06, s_dist_07, s_dist_08, s_dist_09, s_dist_10, s_ytd, s_order_cnt, s_remote_cnt, s_data) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
-            val = (s_i_id, s_w_id, s_quantity, s_dist_01, s_dist_02, s_dist_03, s_dist_04, s_dist_05, s_dist_06, s_dist_07, s_dist_08, s_dist_09, s_dist_10, s_ytd, s_order_cnt, s_remote_cnt, s_data)
-            self.cursor.execute(sql, val)
-        self.mydb.commit()
+        #for each warehouse
+        sql = "SELECT * FROM `warehouse`"
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
+        for row in result:
+            s_w_id = row[0]
+            for i in range(itemCount):
+                s_i_id = i+1
+                s_quantity = self.fake.random_int(min=1, max=100)
+                s_dist_01 = self.fake.text(max_nb_chars=24)
+                s_dist_02 = self.fake.text(max_nb_chars=24)
+                s_dist_03 = self.fake.text(max_nb_chars=24)
+                s_dist_04 = self.fake.text(max_nb_chars=24)
+                s_dist_05 = self.fake.text(max_nb_chars=24)
+                s_dist_06 = self.fake.text(max_nb_chars=24)
+                s_dist_07 = self.fake.text(max_nb_chars=24)
+                s_dist_08 = self.fake.text(max_nb_chars=24)
+                s_dist_09 = self.fake.text(max_nb_chars=24)
+                s_dist_10 = self.fake.text(max_nb_chars=24)
+                s_ytd = self.fake.random_int(min=1000, max=10000)
+                s_order_cnt = self.fake.random_int(min=10, max=100)
+                s_remote_cnt = self.fake.random_int(min=1, max=10)
+                s_data = self.fake.text(max_nb_chars=50)
+
+                sql = "INSERT INTO stock (s_i_id, s_w_id, s_quantity, s_dist_01, s_dist_02, s_dist_03, s_dist_04, s_dist_05, s_dist_06, s_dist_07, s_dist_08, s_dist_09, s_dist_10, s_ytd, s_order_cnt, s_remote_cnt, s_data) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                val = (s_i_id, s_w_id, s_quantity, s_dist_01, s_dist_02, s_dist_03, s_dist_04, s_dist_05, s_dist_06, s_dist_07, s_dist_08, s_dist_09, s_dist_10, s_ytd, s_order_cnt, s_remote_cnt, s_data)
+                self.cursor.execute(sql, val)
+            self.mydb.commit()
 
     #insert dummy data into order table
     def insert_order(self, n):
@@ -268,9 +277,9 @@ class generateData:
 
 
 dataGenerator = generateData()
-# dataGenerator.insert_warehouse()
-# dataGenerator.insert_district()
-# dataGenerator.insert_customer()
+# dataGenerator.insert_warehouse() #DONE
+# dataGenerator.insert_district() #DONE
+# dataGenerator.insert_customer(3000)
 # dataGenerator.insert_item(100000)
-dataGenerator.insert_stock(100000)
+dataGenerator.insert_stock()
 
