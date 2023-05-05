@@ -1,7 +1,7 @@
 // //everything regarding customer will be routed here
 const express = require('express');
 const router = express.Router();
-const indexController = require('../controllers/indexController2');
+const indexController = require('../controllers/indexControllerFinal');
 
 router.get('/', indexController.load_form);
 router.get('/autoTest', indexController.load_autoTest_form);

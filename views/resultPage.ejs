@@ -57,26 +57,26 @@
         <td>New Order</td>
       </tr>
       <tr>
-        <td>Warehouse: <%= warehouse.w_id %></td>
-        <td>District: <%= district.d_id %></td>
-        <% const now = new Date(); const year = now.getFullYear(); const month =
+        <td>Warehouse: <%= warehouseData.w_id %></td>
+        <td>District: <%= districtData.d_id %></td>
+        <!-- <% const now = new Date(); const year = now.getFullYear(); const month =
         now.getMonth() + 1; const day = now.getDate(); const hours =
         now.getHours(); const minutes = now.getMinutes(); const seconds =
         now.getSeconds(); const formattedDate = `${year}-${month}-${day}
-        ${hours}:${minutes}:${seconds}`; %>
-        <td>Date: <%= formattedDate %></td>
+        ${hours}:${minutes}:${seconds}`; %> -->
+        <td>Date: <%= transactionTimestamp %></td>
       </tr>
       <tr>
         <td>Customer:</td>
-        <td>Name: <%= customer.c_last %></td>
-        <td>Credit: <%= customer.c_credit %> </td>
+        <td>Name: <%= customerData.c_last %></td>
+        <td>Credit: <%= customerData.c_credit %> </td>
         <td>Disc: </td>
       </tr>
       <tr>
         <td>Order Number:</td>
         <td>Number of Lines:</td>
-        <td>W_tax:</td>
-        <td>D_txt:</td>
+        <td>W_tax: <%= warehouseData.tax %></td>
+        <td>D_tax: <%= districtData.d_tax %></td>
       </tr>
     </table>
     <table class="order_details">

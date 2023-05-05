@@ -17,6 +17,8 @@ CREATE TABLE warehouse (
 
 SELECT * FROM `warehouse`;
 SELECT DISTINCT `w_id` FROM `warehouse`;
+UPDATE `warehouse` SET `w_tax` = 0.15 WHERE `w_id` = 1;
+UPDATE `warehouse` SET `w_tax` = 0.20 WHERE `w_id` = 2;
 
 -- Create the district table
 CREATE TABLE district (
@@ -40,6 +42,16 @@ SELECT DISTINCT d_id, d_w_id
 FROM district;
 SELECT DISTINCT COUNT(*) d_id, d_w_id
 FROM district;
+UPDATE `district` SET `d_tax` = 0.15 WHERE `d_id` = 1;
+UPDATE `district` SET `d_tax` = 0.25 WHERE `d_id` = 2;
+UPDATE `district` SET `d_tax` = 0.10 WHERE `d_id` = 3;
+UPDATE `district` SET `d_tax` = 0.20 WHERE `d_id` = 4;
+UPDATE `district` SET `d_tax` = 0.12 WHERE `d_id` = 5;
+UPDATE `district` SET `d_tax` = 0.22 WHERE `d_id` = 6;
+UPDATE `district` SET `d_tax` = 0.25 WHERE `d_id` = 7;
+UPDATE `district` SET `d_tax` = 0.15 WHERE `d_id` = 8;
+UPDATE `district` SET `d_tax` = 0.19 WHERE `d_id` = 9;
+UPDATE `district` SET `d_tax` = 0.15 WHERE `d_id` = 10;
 
 
 -- Create the customer table
