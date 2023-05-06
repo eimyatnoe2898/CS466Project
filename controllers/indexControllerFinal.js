@@ -8,7 +8,7 @@ const { NewOrder } = require("../models/newOrder");
 const { Order } = require("../models/order");
 const { Item } = require("../models/Item");
 const { Stock } = require("../models/Stock");
-const { OrderLine } = require("../models/orderLine");
+const { OrderLine } = require("../models/OrderLine");
 const { format } = require("mysql2");
 
 //initialize class instances
@@ -122,7 +122,7 @@ const load_form = (req, res) => {
 //load form with auto-generated inputs
 const load_manualTest_form = (req, res) => {
   // console.log(randomInputsArr);
-  res.render("manualTest", { title: "New Order Page" });
+  res.render("index", { title: "New Order Page" });
 };
 
 //load form with auto-generated inputs
@@ -217,6 +217,8 @@ const load_autoTest_form = (req, res) => {
 //method to process the new order transaction
 const submit_order = (req, res) => {
   //print out all the user inputs
+  total_amount = 0.0;
+  total_taxes = 0.0;
   console.log(req.body);
   //assign the user inputs
   const w_id = req.body.w_id;
@@ -289,7 +291,7 @@ const submit_order = (req, res) => {
       if (itemResult == null) {
         console.log("Item is not found. It is an unused item.");
         let itemValues = {
-          i_id: null,
+          i_id: olid_arr[i],
           i_im_id: null,
           i_name: null,
           i_price: null,
@@ -367,7 +369,7 @@ const submit_order = (req, res) => {
         ];
 
         await db.insertOrderLine(olValues);
-        orderLine = new OrderLine(olValues);
+        orderLine = new OrderLine(olValues, item);
         total_amount += ol_amount;
         console.log("Item: ", item);
         console.log("Order Line: ", orderLine);
@@ -388,19 +390,28 @@ const submit_order = (req, res) => {
     console.log("Order: ", order);
     console.log("New Order: ", new_order);
     console.log("Order Items: ", orderItems);
+    console.log("There are " + orderItems.length + " order items");
     console.log("Order Line Items", orderLines);
+    console.log("There are " + orderLines.length + " order items");
     console.log("Total Order Amount: ", total_amount);
     console.log("Total Taxes: " + total_taxes);
     console.log("Execution status: ");
+    executionStatus = null;
     for (let i = 0; i < olid_arr; i++) {
       if (orderItems[i].used == false) {
-        console.log(orderItems[i]);
-        // console.log("Item number " + orderItems[i].i_id + " is not valid.");
+        
+        // console.log(orderItems[i]);
+        executionStatus += "Item number " + orderItems[i].i_id + ", ";
       }
+
     }
+    // console.log("Order Items: ", orderItems);
+
+
+    executionStatus += "are not valid";
   })();
 
-  res.render("resultPage", { title: "Result Page", transactionTimestamp: curTimestamp, warehouseData: warehouse, districtData: district, customerData: customer, orderData: order, newOrderData: new_order, orderItemsData: orderItems, orderLinesData: orderLines, totalAmountData: total_amount, totalTaxesData: total_taxes});
+  res.render("resultPage", { title: "Result Page", transactionTimestamp: curTimestamp, warehouseData: warehouse, districtData: district, customerData: customer, orderData: order, newOrderData: new_order, orderItemsData: orderItems, orderLinesData: orderLines, totalAmountData: total_amount, totalTaxesData: total_taxes, executionStatusData: executionStatus});
 
 };
 
