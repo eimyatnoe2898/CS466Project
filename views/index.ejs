@@ -4,248 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Make New Order</title>
+    <title>New Order Input</title>
 </head>
-<body>
-	<style>
-		header {
-			text-align: center;
-			color:blue;
-			font-size:50px;
-		}
-		body {
-			center:auto;
-			text-align: center;
-			background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-		}
-		.form_inputs {
-			margin: auto;
-			width: 100%;
-			<!--border: 1px solid #333;-->
-			box-shadow: 8px 8px 5px #444;
-			padding: 8px 12px;
-			background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
-		}
-		.item_inputs{
-			text-align: center;
-			align:center;
-		}
-		table { 
-			text-align: center;
-			align:center;
-			border: 1px solid #333;
-			width: 60%;
-			margin-left:20%;
-			margin-right:20%;
-		}
-		footer {
-			text-align:center;
-			background-color: #abbaba;
-			color: #000;
+<style>
+    header {
+        text-align: center;
+        color:blue;
+        font-size:50px;
+    }
+    body {
+        center:auto;
+        text-align: center;
+        background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+    }
+    .form_inputs {
+        margin: auto;
+        width: 100%;
+        /* <!--border: 1px solid #333;--> */
+        box-shadow: 8px 8px 5px #444;
+        padding: 8px 12px;
+        background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
+    }
+    .item_inputs{
+        text-align: center;
+        align:center;
+    }
+    table { 
+        text-align: center;
+        align:center;
+        border: 1px solid #333;
+        width: 60%;
+        margin-left:20%;
+        margin-right:20%;
+    }
+    footer {
+        text-align:center;
+        background-color: #abbaba;
+        color: #000;
 }
-	</style>
-  <!-- <div class="create-blog content">
-    <form action="/customer/newOrder" method="POST">
-      <label for="title">Name:</label>
-      <input type="text" id="title" name="name" required />
-      <label for="snippet">Table:</label>
-      <input
-        type="number"
-        min="1"
-        max="8"
-        id="snippet"
-        name="tableNumber"
-        required
-      />
-      <input type="submit" name="submit_button" class="btn btn-primary" value="Add" />
-    </form>
-  </div> -->
-	<header> TPC-C benchmark with Amazon AWS</header>
-  <div class = "form_inputs">
-	<div class = "location_inputs">
-    <form action = "/customer/newOrder" method = "POST">
-      <label for = "w_id">Select Warehouse:</label>
-      <input type = "number" id = "w_id" name="w_id" required>
-      <select id="cars" name="w_id">
-        <option value = "choose">Choose Warehouse ID</option>
-        <% if(warehouseData.length > 0) { %>
-              <% warehouseData.forEach(eachWarehouse => {
-              let warehouseId = eachWarehouse['w_id'] %>
-              <option value="<%= warehouseId %>"><%= warehouseId %></option>
-          <% })}%>
-      </select>
-      <label for = "d_id">Select District: </label>
-      <input type = "number" id = "d_id" name = "d_id" required>
-      <select id="cars" name="d_id">
-        <option value = "choose">Choose District ID</option>
-        <% if(districtData.length > 0) { %>
-          <% districtData.forEach(eachDistrict => {
-          let districtId = eachDistrict['d_id'] %>
-          <option value="<%= districtId %>"><%= districtId %></option>
-      <% })}%>
-        <!-- <option value=""></option> -->
-      </select>
-      <label for = "c_id">Select Customer: </label>
-      <input type = "number" id = "c_id" nmae = "c_id" required>
-      <select id="cars" name="c_id">
-        <option value = "choose">Choose Customer ID</option>
-        <% if(customerData.length > 0) { %>
-          <% customerData.forEach(eachCustomer => {
-          let customerId = eachCustomer['c_id'] %>
-          <option value="<%= customerId %>"><%= customerId %></option>
-      <% })}%>
-      </select>
-	</div>
-      <!--Form to Enter Orders-->
-	<div class = "item_inputs">	
-		<table>
-			<tr>
-			  <th>OL_I_ID</th>
-			  <th>OL_SUPPLY_W_ID</th>
-			  <th>OL_QUANTITY</th>
-			</tr>
-			<tr>
-			  <td>
-				<input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-				<input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-				<input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-				<input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-				<input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-				<input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
-				<input type = "number" id = "ol_1_id" name = "ol_1_id[]" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
-				<input type = "number" id = "ol_1_wid" name = "ol_1_wid[]" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
-				<input type = "number" id = "ol_1_quantity" name = "ol_1_quantity[]" required>
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-				<input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
-				<input type = "number" id = "ol_1_id" name = "ol_1_id[]" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
-				<input type = "number" id = "ol_1_wid" name = "ol_1_wid[]" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
-				<input type = "number" id = "ol_1_quantity" name = "ol_1_quantity[]" required>
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-				<input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
-				<input type = "number" id = "ol_1_id" name = "ol_1_id[]" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
-				<input type = "number" id = "ol_1_wid" name = "ol_1_wid[]" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
-				<input type = "number" id = "ol_1_quantity" name = "ol_1_quantity[]" required>
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-				<input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
-				<input type = "number" id = "ol_1_id" name = "ol_1_id[]" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
-				<input type = "number" id = "ol_1_wid" name = "ol_1_wid[]" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
-				<input type = "number" id = "ol_1_quantity" name = "ol_1_quantity[]" required>
-			  </td>
-			</tr>
-			<tr>
-			  <td>
-				<input type = "number" id = "ol_1_id" nmae = "ol_1_id" required>
-				<input type = "number" id = "ol_1_id" name = "ol_1_id[]" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_wid" nmae = "ol_1_wid" required>
-				<input type = "number" id = "ol_1_wid" name = "ol_1_wid[]" required>
-			  </td>
-			  <td>
-				<input type = "number" id = "ol_1_quantity" nmae = "ol_1_quantity" required>
-				<input type = "number" id = "ol_1_quantity" name = "ol_1_quantity[]" required>
-			  </td>
-			</tr>
-        
+</style>
+<body>
+    <!--call the nav.ejs here-->
+    <nav>
 
-<<<<<<< HEAD
+    </nav>
+
+    <!--call the header.ejs here -->
+    <header>
+      <h1>TPC-C benchmark with Amazon AWS</h1>
+    </header>
+
     <!--Form to add the order -->
     <main>
         <form action="/newOrder" method="POST">
             <!--first part will be for order headers: warehouse number, district number, customer number -->
             <!--Get the random warehouse id-->
-            <%= randomInputs['w_id'] %>
             <label for = "w_id" class = "input_labels">Select Warehouse: </label>
-            <input type = "text" name = "w_id" class = "inputs" value = "<%= randomInputs['w_id'] %>" readonly required >
+            <input type = "text" name = "w_id" class = "inputs" required>
             <br>
             <label for = "d_id" class = "input_labels">Select District: </label>
-            <input type = "text" name = "d_id" class = "inputs" value = "<%= randomInputs['d_id'] %>" readonly required >
+            <input type = "text" name = "d_id" class = "inputs" required >
             <br>
             <label for = "c_id" class = "input_labels">Select Customer: </label>
-            <input type = "text" name = "c_id" class = "inputs" value = "<%= randomInputs['c_id']%>" readonly required>
+            <input type = "text" name = "c_id" class = "inputs" required>
             <br>
             <!-- second part will be for variable number of items -->
             <table>
@@ -254,45 +75,130 @@
                     <th>OL_SUPPLY_W_ID</th>
                     <th>OL_QUANTITY</th>
                 </tr>
-
-                <!--create more form elements if needed -->
-                <% if (randomInputs['orders'].length > 0) { %>
-                    <% randomInputs['orders'].forEach(eachOrder => {
-                        let ol_i_id = eachOrder['ol_i_id'];
-                        let ol_supply_w_id = eachOrder['ol_supply_w_id'];
-                        let ol_quantity = eachOrder['ol_quantity']; %>
-                        <tr>
-                            <td>
-                                <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" value = "<%= ol_i_id %>" required readonly>
-                            </td>
-                            <td>
-                                <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" value = "<%= ol_supply_w_id %>" required readonly>
-                            </td>
-                            <td>
-                                <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" value = "<%= ol_quantity %>" required readonly>
-                            </td>
-                        </tr>
-                    <% }) %>
-                <% } %>
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr>  
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_id" name = "ol_id[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_wid" name = "ol_wid[]" required>
+                    </td>
+                    <td>
+                        <input type = "text" class = "inputs" id = "ol_1_quantity" name = "ol_quantity[]" required>
+                    </td>
+                </tr>               
             </table>
               <input type="submit" name="submit_button" class="btn btn-primary" value="Perform New Order Transaction" />
         </form>
     </main>
-=======
-      </table>
-	  </div>
-      <input type="submit" name="submit_button" class="btn btn-primary" value="Perform New Order Transaction" />
->>>>>>> 47e17a73f445347c4a7e74cbe60879c9e3944bd1
 
-    </form>
-  </div>    
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+            <p class="col-md-4 mb-0 text-muted">&copy; TPCC Benchmark</p>
+            <ul class="nav col-md-4 justify-content-end">
+                <p><a href="/" class="nav-link px-2">Home</a><p>
+            </ul>
+        </footer>
+      </div>
+
+    
 </body>
-<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
-      <p class="col-md-4 mb-0 text-muted">&copy; TPCC Benchmark</p>
-      <ul class="nav col-md-4 justify-content-end">
-          <p><a href="/" class="nav-link px-2">Home</a><p>
-      </ul>
-  </footer>
-</div>
 </html>

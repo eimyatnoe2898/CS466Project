@@ -1,0 +1,2 @@
+This folder is creating classes
+The classes here will directly interact with the database
