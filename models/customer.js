@@ -14,10 +14,10 @@ class Customer
 
     //use this method to send tax back to the homepage
 
-    static fromJSON(jsonObj){
-        const menuItem = new Warehouse(jsonObject);
-        return menuItem;
-    }
+    // static fromJSON(jsonObj){
+    //     const menuItem = new Warehouse(jsonObject);
+    //     return menuItem;
+    // }
 
     // get W_id()
     // {
