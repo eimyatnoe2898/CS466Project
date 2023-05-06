@@ -8,7 +8,7 @@ const { NewOrder } = require("../models/newOrder");
 const { Order } = require("../models/order");
 const { Item } = require("../models/Item");
 const { Stock } = require("../models/Stock");
-const { OrderLine } = require("../models/OrderLine");
+const { OrderLine } = require("../models/orderLine");
 const { format } = require("mysql2");
 
 //initialize class instances
